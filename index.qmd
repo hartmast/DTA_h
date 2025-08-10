@@ -1,5 +1,5 @@
 ---
-title: "<h> spellings in DTA"
+title: "\\<h\\>-spellings in DTA"
 format: html
 editor: visual
 ---
