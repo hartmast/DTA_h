@@ -132,6 +132,8 @@ se <- function(x) sqrt(var(x) / length(x))
 This plot shows the proportion of \<h\> spellings overall
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Code"
 (p0 <- d_tbl %>% group_by(decade) %>% summarise(
   mean = mean(rel),
   se   = se(rel),
@@ -151,6 +153,9 @@ This plot shows the proportion of \<h\> spellings overall
 In order to check whether highly-frequent words converge on \<h\> spellings earlier, we divide the data into different frequency bands; first we use frequency per million words within each decade...
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Code"
+
 (p1a <- d_tbl %>% mutate(Freq_Band = case_when(Freq_pmw <= 50 ~ "<50",
                                               Freq_pmw > 50 & Freq_pmw <= 100 ~ "51-100",
                                               Freq_pmw > 100 & Freq_pmw <= 1000 ~"101-1000",
@@ -179,6 +184,9 @@ In order to check whether highly-frequent words converge on \<h\> spellings earl
 ... then across decades:
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Code"
+
 # divide frequency pmw into four quartiles:
 quartiles <- quantile(d_tbl$freq_pmw_across_decades) %>% as.numeric()
 

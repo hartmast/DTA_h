@@ -221,6 +221,8 @@ dbl (2): Total_Freq, decade
 <h3 class="anchored" data-anchor-id="proportion-of-spellings-with-h-overall">Proportion of spellings with &lt;h&gt; overall</h3>
 <p>This plot shows the proportion of &lt;h&gt; spellings overall</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(p0 <span class="ot">&lt;-</span> d_tbl <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(decade) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(rel),</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">se   =</span> <span class="fu">se</span>(rel),</span>
@@ -233,6 +235,7 @@ dbl (2): Total_Freq, decade
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Proportion of spelling variants with &lt;h&gt;"</span>) <span class="sc">+</span></span>
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Decade"</span>) <span class="sc">+</span></span>
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Development of &lt;h&gt; spellings overall"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -246,6 +249,8 @@ dbl (2): Total_Freq, decade
 <h3 class="anchored" data-anchor-id="proportion-of-spellings-with-h-across-frequency-bands">Proportion of spellings with &lt;h&gt; across frequency bands</h3>
 <p>In order to check whether highly-frequent words converge on &lt;h&gt; spellings earlier, we divide the data into different frequency bands; first we use frequency per million words within each decade…</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(p1a <span class="ot">&lt;-</span> d_tbl <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Freq_Band =</span> <span class="fu">case_when</span>(Freq_pmw <span class="sc">&lt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"&lt;50"</span>,</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                                              Freq_pmw <span class="sc">&gt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> Freq_pmw <span class="sc">&lt;=</span> <span class="dv">100</span> <span class="sc">~</span> <span class="st">"51-100"</span>,</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                                              Freq_pmw <span class="sc">&gt;</span> <span class="dv">100</span> <span class="sc">&amp;</span> Freq_pmw <span class="sc">&lt;=</span> <span class="dv">1000</span> <span class="sc">~</span><span class="st">"101-1000"</span>,</span>
@@ -269,6 +274,7 @@ dbl (2): Total_Freq, decade
 <span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Frequency band"</span>)) <span class="sc">+</span></span>
 <span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Development of &lt;h&gt; spellings by frequency band"</span>) <span class="sc">+</span></span>
 <span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">col =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Frequency band</span><span class="sc">\n</span><span class="st">(per mio. words)"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'decade'. You can override using the
 `.groups` argument.</code></pre>
@@ -283,6 +289,8 @@ dbl (2): Total_Freq, decade
 </div>
 <p>… then across decades:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># divide frequency pmw into four quartiles:</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>quartiles <span class="ot">&lt;-</span> <span class="fu">quantile</span>(d_tbl<span class="sc">$</span>freq_pmw_across_decades) <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>()</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -309,6 +317,7 @@ dbl (2): Total_Freq, decade
 <span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> .<span class="dv">9</span>) <span class="sc">+</span></span>
 <span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">col =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Frequency band</span><span class="sc">\n</span><span class="st">(total corpus</span><span class="sc">\n</span><span class="st">frequencies per</span><span class="sc">\n</span><span class="st">million words)"</span>)) <span class="sc">+</span></span>
 <span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Development of &lt;h&gt; spellings by frequency band"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'decade'. You can override using the
 `.groups` argument.</code></pre>
